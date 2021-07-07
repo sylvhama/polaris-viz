@@ -23,15 +23,45 @@ import {
 } from './types';
 
 export interface BarChartProps {
+  /**
+   * Data represented as bars. Required.
+   */
   data: BarChartData[];
+  /**
+   * An array of annotations to show on the chart.
+   */
   annotations?: Annotation[];
+  /**
+   * If provided, renders a `<SkipLink/>` button with the string. Use this for charts with large data sets, so keyboard users can skip all the tabbable data points in the chart.
+   */
   skipLinkText?: string;
+  /**
+   * Used to indicate to screenreaders that a chart with no data has been rendered, in the case that an empty array is passed as the data. It is strongly recommended that this is included if the data prop could be an empty array.
+   */
   emptyStateText?: string;
+  /**
+   * Whether to animate the bars when the chart is initially rendered and its data is updated. Even if `isAnimated` is set to true, animations will not be displayed for users with reduced motion preferences.
+   */
   isAnimated?: boolean;
+  /**
+   * Accepts a function that renders the tooltip content. By default it calls `formatXAxisLabel` and `formatYAxisLabel` to format the the tooltip values and passes them to `<BarChartTooltipContent />`.
+   */
   renderTooltipContent?: (data: RenderTooltipContentData) => React.ReactNode;
+  /**
+   * Control the appearance of bars and the spacing between them.
+   */
   barOptions?: Partial<BarOptions>;
+  /**
+   * An object including the following optional proprties that define the grid.
+   */
   gridOptions?: Partial<GridOptions>;
+  /**
+   * An object used to configure the appearance of the xAxis and its labels.
+   */
   xAxisOptions?: Partial<XAxisOptions>;
+  /**
+   * An object used to configure the appearance of the yAxis and its labels.
+   */
   yAxisOptions?: Partial<YAxisOptions>;
 }
 

@@ -1,9 +1,19 @@
 import React from 'react';
 
+import {addParameters} from '@storybook/react';
+import {DocsPage, DocsContainer} from '@storybook/addon-docs';
+
+addParameters({
+  docs: {
+    container: DocsContainer,
+    page: DocsPage,
+  },
+});
+
 export const parameters = {
   options: {
     storySort: {
-      order: ['Charts', 'Subcomponents'],
+      order: ['Docs', 'Charts', 'Subcomponents'],
     },
   },
 };

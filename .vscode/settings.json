@@ -15,7 +15,6 @@
     ".{dev,shadowenv.d}": true,
     "build-intermediate/": true,
     "build/": true,
-    "docs/": true,
     "esnext/": true,
     "index.*": true,
     "sandbox": true,

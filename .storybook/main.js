@@ -6,17 +6,18 @@ const path = require('path');
 const postcssShopify = require('@shopify/postcss-plugin');
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(ts|tsx)'],
+  stories: ['../docs/**/*.mdx', '../src/**/*.stories.@(ts|tsx|mdx)'],
   addons: [
     '@storybook/addon-links',
-    {name: '@storybook/addon-essentials', options: {docs: true}},
+    {name: '@storybook/addon-essentials', options: {docs: false}},
+    '@storybook/addon-docs/preset',
   ],
   typescript: {
     // also valid 'react-docgen-typescript' | false
     // reactDocgen: 'react-docgen-typescript',
     // There is an issue with TypeScript 4.3 and React Doc Gen
     // https://github.com/styleguidist/react-docgen-typescript/issues/356
-    reactDocgen: 'none',
+    reactDocgen: 'react-docgen-typescript',
   },
   webpackFinal: (config) => {
     const isProduction = config.mode === 'production';
@@ -59,13 +60,7 @@ module.exports = {
       },
     ];
 
-    config.module.rules = [
-      // Strip out existing rules that apply to md files
-      ...config.module.rules.filter(
-        (rule) => rule.test.toString() !== '/\\.md$/',
-      ),
-      ...extraRules,
-    ];
+    config.module.rules.push(...extraRules);
 
     config.resolve.alias = {
       ...config.resolve.alias,
