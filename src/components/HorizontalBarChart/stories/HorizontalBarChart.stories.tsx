@@ -38,6 +38,8 @@ const SERIES = buildSeries([
   [48, 8, 50],
   [1, 5, 5],
 ]);
+
+console.log(SERIES);
 const CONTAINER_HEIGHT = 500;
 
 const SINGLE_SERIES = buildSeries([3, 7, 4, 8, 4, 1, 4, 6]);

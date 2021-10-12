@@ -45,6 +45,7 @@ export function TruncatedText({
       transform={transform}
       width={width}
       textAnchor={align}
+      style={{color}}
     >
       {lines.map((line) => {
         return (

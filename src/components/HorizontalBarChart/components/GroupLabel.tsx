@@ -24,6 +24,7 @@ export function GroupLabel({areAllNegative, label, theme}: GroupLabelProps) {
       fill={selectedTheme.yAxis.labelColor}
       fontSize={FONT_SIZE}
       y={12}
+      style={{color}}
     >
       {label}
     </text>
