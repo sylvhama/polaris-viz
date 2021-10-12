@@ -11,7 +11,7 @@ import {
   BELOW_X_AXIS_MARGIN,
 } from '../../constants';
 
-import styles from './LinearXAxis.scss';
+// import styles from './LinearXAxis.scss';
 
 interface XAxisDetails {
   maxXLabelHeight: number;
@@ -33,23 +33,23 @@ interface Props {
   theme?: string;
 }
 
-function getTextAlign({
-  needsDiagonalLabels,
-  firstLabel,
-  adjustedLastLabel,
-}: {
-  needsDiagonalLabels: boolean;
-  firstLabel: boolean;
-  adjustedLastLabel: boolean;
-}) {
-  if (needsDiagonalLabels || adjustedLastLabel) {
-    return 'right';
-  } else if (firstLabel) {
-    return 'left';
-  } else {
-    return 'center';
-  }
-}
+// function getTextAlign({
+//   needsDiagonalLabels,
+//   firstLabel,
+//   adjustedLastLabel,
+// }: {
+//   needsDiagonalLabels: boolean;
+//   firstLabel: boolean;
+//   adjustedLastLabel: boolean;
+// }) {
+//   if (needsDiagonalLabels || adjustedLastLabel) {
+//     return 'right';
+//   } else if (firstLabel) {
+//     return 'left';
+//   } else {
+//     return 'center';
+//   }
+// }
 
 function Axis({
   xScale,
@@ -92,9 +92,9 @@ function Axis({
 
   const textHeight = needsDiagonalLabels ? LINE_HEIGHT : maxXLabelHeight;
 
-  const textContainerClassName = needsDiagonalLabels
-    ? styles.DiagonalText
-    : styles.Text;
+  // const textContainerClassName = needsDiagonalLabels
+  //   ? styles.DiagonalText
+  //   : styles.Text;
 
   return (
     <React.Fragment>
@@ -111,11 +111,11 @@ function Axis({
           ? -horizontalLabelWidth
           : -horizontalLabelWidth / 2;
 
-        const textAlign = getTextAlign({
-          needsDiagonalLabels,
-          firstLabel,
-          adjustedLastLabel,
-        });
+        // const textAlign = getTextAlign({
+        //   needsDiagonalLabels,
+        //   firstLabel,
+        //   adjustedLastLabel,
+        // });
 
         const tickContainerTransform = needsDiagonalLabels
           ? `translate(${-diagonalLabelOffset - SPACING_EXTRA_TIGHT} ${
@@ -138,23 +138,16 @@ function Axis({
                 strokeDasharray="3 2"
               />
             ) : null}
-            <foreignObject
+            <text
               width={textWidth}
               height={textHeight}
               transform={tickContainerTransform}
+              fontSize={fontSize}
+              fill={selectedTheme.xAxis.labelColor}
+              style={{color: selectedTheme.yAxis.labelColor}}
             >
-              <div
-                aria-hidden={ariaHidden}
-                className={textContainerClassName}
-                style={{
-                  fontSize,
-                  textAlign,
-                  color: selectedTheme.xAxis.labelColor,
-                }}
-              >
-                {value}
-              </div>
-            </foreignObject>
+              {value}
+            </text>
           </g>
         );
       })}

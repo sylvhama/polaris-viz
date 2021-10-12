@@ -22,31 +22,28 @@ function Axis({ticks, fontSize = FONT_SIZE, width, textAlign, theme}: Props) {
     <React.Fragment>
       {ticks.map(({value, formattedValue, yOffset}) => {
         return (
-          <foreignObject
+          <text
             key={value}
             transform={`translate(${selectedTheme.grid.horizontalMargin},${
-              yOffset - LINE_HEIGHT / 2
+              yOffset + LINE_HEIGHT / 3
             })`}
             width={width + PADDING_SIZE * 2}
             height={LINE_HEIGHT}
+            fill={selectedTheme.yAxis.labelColor}
+            fontSize={fontSize}
             style={{
               color: selectedTheme.yAxis.labelColor,
               textAlign,
-              fontSize,
               lineHeight: `${LINE_HEIGHT}px`,
+
+              background: selectedTheme.yAxis.backgroundColor,
+              padding: PADDING_SIZE,
+              whiteSpace: 'nowrap',
+              fontFeatureSettings: 'tnum',
             }}
           >
-            <span
-              style={{
-                background: selectedTheme.yAxis.backgroundColor,
-                padding: PADDING_SIZE,
-                whiteSpace: 'nowrap',
-                fontFeatureSettings: 'tnum',
-              }}
-            >
-              {formattedValue}
-            </span>
-          </foreignObject>
+            {formattedValue}
+          </text>
         );
       })}
     </React.Fragment>
