@@ -1,6 +1,7 @@
 import React from 'react';
 import type {ScaleBand} from 'd3-scale';
 
+import {TruncatedText} from '../TruncatedText';
 import {useTheme} from '../../hooks';
 import {
   TICK_SIZE,
@@ -158,26 +159,16 @@ export const BarChartXAxis = React.memo(function BarChartXAxis({
             {minimalLabelIndexes == null && selectedTheme.xAxis.showTicks ? (
               <line y2={TICK_SIZE} stroke={selectedTheme.grid.color} />
             ) : null}
-            <foreignObject
+
+            <TruncatedText
+              text={value}
               width={angleAwareWidth}
               height={textHeight}
-              transform={
-                needsDiagonalLabels || minimalLabelIndexes == null
-                  ? textTransform
-                  : ''
-              }
-            >
-              <div
-                className={textContainerClassName}
-                style={{
-                  fontSize,
-                  color: selectedTheme.xAxis.labelColor,
-                  textAlign,
-                }}
-              >
-                {value}
-              </div>
-            </foreignObject>
+              fontSize={fontSize}
+              color={selectedTheme.xAxis.labelColor}
+              align="middle"
+              transform="translate(0, 19)"
+            />
           </g>
         );
       })}

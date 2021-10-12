@@ -16,23 +16,16 @@ export function GroupLabel({areAllNegative, label, theme}: GroupLabelProps) {
   const selectedTheme = useTheme(theme);
 
   return (
-    <foreignObject
+    <text
       height={LABEL_HEIGHT}
       width="100%"
       x={areAllNegative ? labelWidth * -1 : 0}
       aria-hidden="true"
+      fill={selectedTheme.yAxis.labelColor}
+      fontSize={FONT_SIZE}
+      y={12}
     >
-      <div
-        style={{
-          background: selectedTheme.chartContainer.backgroundColor,
-          fontSize: `${FONT_SIZE}px`,
-          color: selectedTheme.yAxis.labelColor,
-          height: LABEL_HEIGHT,
-          width: labelWidth + LABEL_HEIGHT,
-        }}
-      >
-        {label}
-      </div>
-    </foreignObject>
+      {label}
+    </text>
   );
 }
