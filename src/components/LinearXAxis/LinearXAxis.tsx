@@ -2,17 +2,8 @@ import React, {useMemo} from 'react';
 import type {ScaleLinear} from 'd3-scale';
 
 import {useTheme} from '../../hooks';
-import {RightAngleTriangle} from '../../utilities';
-import {
-  TICK_SIZE,
-  SPACING_EXTRA_TIGHT,
-  DIAGONAL_ANGLE,
-  LINE_HEIGHT,
-  BELOW_X_AXIS_MARGIN,
-} from '../../constants';
-import {TruncatedText} from '../TruncatedText';
-
-import styles from './LinearXAxis.scss';
+import {TICK_SIZE, LINE_HEIGHT} from '../../constants';
+import {TextAlignment, TruncatedText} from '../TruncatedText';
 
 interface XAxisDetails {
   maxXLabelHeight: number;
@@ -29,21 +20,20 @@ interface Props {
   fontSize: number;
   xAxisDetails: XAxisDetails;
   drawableHeight: number;
-  ariaHidden: boolean;
 
   theme?: string;
 }
 
-function getAlignment({isFirst, isLast}) {
+function getAlignment({isFirst, isLast}: {isFirst: boolean; isLast: boolean}) {
   if (isFirst) {
-    return 'start';
+    return TextAlignment.Start;
   }
 
   if (isLast) {
-    return 'end';
+    return TextAlignment.End;
   }
 
-  return 'middle';
+  return TextAlignment.Middle;
 }
 
 function Axis({
@@ -53,7 +43,6 @@ function Axis({
   fontSize,
   drawableWidth,
   drawableHeight,
-  ariaHidden,
   theme,
 }: Props) {
   const selectedTheme = useTheme(theme);

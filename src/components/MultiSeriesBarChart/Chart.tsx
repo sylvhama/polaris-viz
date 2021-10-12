@@ -265,7 +265,6 @@ export function Chart({
           <YAxis
             ticks={ticks}
             fontSize={fontSize}
-            textAlign={selectedTheme.grid.horizontalOverflow ? 'left' : 'right'}
             width={yAxisLabelWidth}
             theme={theme}
           />

@@ -308,7 +308,6 @@ export function Chart({
               drawableWidth={drawableWidth}
               fontSize={fontSize}
               drawableHeight={drawableHeight}
-              ariaHidden
               theme={theme}
             />
           </g>
@@ -335,7 +334,6 @@ export function Chart({
             ticks={ticks}
             fontSize={fontSize}
             width={axisMargin}
-            textAlign={selectedTheme.grid.horizontalOverflow ? 'left' : 'right'}
             theme={theme}
           />
         </g>

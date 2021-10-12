@@ -3,11 +3,10 @@ import React from 'react';
 import {useTheme} from '../../hooks';
 import {LINE_HEIGHT, FONT_SIZE} from '../../constants';
 import type {YAxisTick} from '../../types';
-import {TruncatedText} from '../TruncatedText';
+import {TextAlignment, TruncatedText} from '../TruncatedText';
 
 interface Props {
   ticks: YAxisTick[];
-  textAlign: 'left' | 'right';
   width: number;
 
   fontSize?: number;
@@ -16,7 +15,7 @@ interface Props {
 
 const PADDING_SIZE = 1;
 
-function Axis({ticks, fontSize = FONT_SIZE, width, textAlign, theme}: Props) {
+function Axis({ticks, fontSize = FONT_SIZE, width, theme}: Props) {
   const selectedTheme = useTheme(theme);
 
   return (
@@ -33,7 +32,7 @@ function Axis({ticks, fontSize = FONT_SIZE, width, textAlign, theme}: Props) {
             color={selectedTheme.yAxis.labelColor}
             fontSize={fontSize}
             text={formattedValue}
-            align="end"
+            align={TextAlignment.End}
           />
         );
       })}

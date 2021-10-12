@@ -1,46 +1,21 @@
 import React from 'react';
 import type {ScaleBand} from 'd3-scale';
 
-import {TruncatedText} from '../TruncatedText';
+import {TextAlignment, TruncatedText} from '../TruncatedText';
 import {useTheme} from '../../hooks';
 import {
   TICK_SIZE,
   BELOW_X_AXIS_MARGIN,
   SPACING_EXTRA_TIGHT,
-  DIAGONAL_ANGLE,
   LINE_HEIGHT,
   DEFAULT_LABEL_RATIO,
-  SPACING_BASE_TIGHT,
 } from '../../constants';
-import {RightAngleTriangle} from '../../utilities';
-
-import styles from './BarChartXAxis.scss';
 
 interface XAxisDetails {
   maxXLabelHeight: number;
   maxDiagonalLabelLength: number;
   needsDiagonalLabels: boolean;
   maxWidth: number;
-}
-
-function getTextAlign({
-  isFirstLabel,
-  isLastLabel,
-  needsDiagonalLabels,
-  useMiniminalLabels,
-}: {
-  isFirstLabel: boolean;
-  isLastLabel: boolean;
-  needsDiagonalLabels: boolean;
-  useMiniminalLabels: boolean;
-}) {
-  if (isFirstLabel && useMiniminalLabels && !needsDiagonalLabels) {
-    return 'left';
-  } else if ((isLastLabel && useMiniminalLabels) || needsDiagonalLabels) {
-    return 'right';
-  } else {
-    return 'center';
-  }
 }
 
 function getMiniminalLabelPosition({
@@ -94,23 +69,9 @@ export const BarChartXAxis = React.memo(function BarChartXAxis({
     maxWidth,
   } = xAxisDetails;
 
-  const diagonalLabelOffset = new RightAngleTriangle({
-    sideC: maxDiagonalLabelLength,
-    sideA: maxXLabelHeight,
-  }).getOppositeLength();
-
-  const textTransform = needsDiagonalLabels
-    ? `translate(${-diagonalLabelOffset - SPACING_BASE_TIGHT / 2} ${
-        maxXLabelHeight + BELOW_X_AXIS_MARGIN / 2
-      }) rotate(${DIAGONAL_ANGLE})`
-    : `translate(-${maxWidth / 2} ${BELOW_X_AXIS_MARGIN})`;
-
   const textHeight = needsDiagonalLabels
     ? LINE_HEIGHT
     : maxXLabelHeight + SPACING_EXTRA_TIGHT;
-  const textContainerClassName = needsDiagonalLabels
-    ? styles.DiagonalText
-    : styles.Text;
 
   const diagonalLabelSpacePerBar = Math.floor((LINE_HEIGHT * 2) / maxWidth);
   const visibleLabelRatio = needsDiagonalLabels
@@ -147,13 +108,6 @@ export const BarChartXAxis = React.memo(function BarChartXAxis({
             ? `translate(${xOffset}, 0)`
             : `translate(${minimumLabelsPosition}, ${BELOW_X_AXIS_MARGIN})`;
 
-        const textAlign = getTextAlign({
-          isFirstLabel,
-          isLastLabel,
-          needsDiagonalLabels,
-          useMiniminalLabels: minimalLabelIndexes != null,
-        });
-
         return (
           <g key={index} transform={groupTransform}>
             {minimalLabelIndexes == null && selectedTheme.xAxis.showTicks ? (
@@ -166,7 +120,7 @@ export const BarChartXAxis = React.memo(function BarChartXAxis({
               height={textHeight}
               fontSize={fontSize}
               color={selectedTheme.xAxis.labelColor}
-              align="middle"
+              align={TextAlignment.Middle}
               transform="translate(0, 19)"
             />
           </g>

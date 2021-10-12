@@ -285,7 +285,6 @@ export function Chart({
               drawableHeight={drawableHeight}
               fontSize={fontSize}
               drawableWidth={drawableWidth}
-              ariaHidden
               theme={theme}
             />
           </g>
@@ -296,7 +295,6 @@ export function Chart({
             ticks={ticks}
             fontSize={fontSize}
             width={axisMargin}
-            textAlign="right"
             theme={theme}
           />
         </g>
