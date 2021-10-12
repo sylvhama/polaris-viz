@@ -10,8 +10,9 @@ import {
   LINE_HEIGHT,
   BELOW_X_AXIS_MARGIN,
 } from '../../constants';
+import {TruncatedText} from '../TruncatedText';
 
-// import styles from './LinearXAxis.scss';
+import styles from './LinearXAxis.scss';
 
 interface XAxisDetails {
   maxXLabelHeight: number;
@@ -32,24 +33,6 @@ interface Props {
 
   theme?: string;
 }
-
-// function getTextAlign({
-//   needsDiagonalLabels,
-//   firstLabel,
-//   adjustedLastLabel,
-// }: {
-//   needsDiagonalLabels: boolean;
-//   firstLabel: boolean;
-//   adjustedLastLabel: boolean;
-// }) {
-//   if (needsDiagonalLabels || adjustedLastLabel) {
-//     return 'right';
-//   } else if (firstLabel) {
-//     return 'left';
-//   } else {
-//     return 'center';
-//   }
-// }
 
 function Axis({
   xScale,
@@ -85,16 +68,7 @@ function Axis({
     });
   }, [labels, ticks, xScale]);
 
-  const diagonalLabelOffset = new RightAngleTriangle({
-    sideC: maxDiagonalLabelLength,
-    sideA: maxXLabelHeight,
-  }).getOppositeLength();
-
   const textHeight = needsDiagonalLabels ? LINE_HEIGHT : maxXLabelHeight;
-
-  // const textContainerClassName = needsDiagonalLabels
-  //   ? styles.DiagonalText
-  //   : styles.Text;
 
   return (
     <React.Fragment>
@@ -111,20 +85,6 @@ function Axis({
           ? -horizontalLabelWidth
           : -horizontalLabelWidth / 2;
 
-        // const textAlign = getTextAlign({
-        //   needsDiagonalLabels,
-        //   firstLabel,
-        //   adjustedLastLabel,
-        // });
-
-        const tickContainerTransform = needsDiagonalLabels
-          ? `translate(${-diagonalLabelOffset - SPACING_EXTRA_TIGHT} ${
-              maxXLabelHeight + BELOW_X_AXIS_MARGIN / 2
-            }) rotate(${DIAGONAL_ANGLE})`
-          : `translate(${
-              horizontalXPosition + firstLabelAdjustment
-            } ${BELOW_X_AXIS_MARGIN})`;
-
         return (
           <g key={index} transform={`translate(${xOffset}, 0)`}>
             {selectedTheme.xAxis.showTicks ? (
@@ -138,16 +98,16 @@ function Axis({
                 strokeDasharray="3 2"
               />
             ) : null}
-            <text
-              width={textWidth}
-              height={textHeight}
-              transform={tickContainerTransform}
+            <TruncatedText
+              color={selectedTheme.xAxis.labelColor}
               fontSize={fontSize}
-              fill={selectedTheme.xAxis.labelColor}
-              style={{color: selectedTheme.yAxis.labelColor}}
-            >
-              {value}
-            </text>
+              height={textHeight}
+              text={value}
+              transform={`translate(${
+                horizontalXPosition + firstLabelAdjustment
+              } 19)`}
+              width={textWidth}
+            />
           </g>
         );
       })}

@@ -3,6 +3,7 @@ import React from 'react';
 import {useTheme} from '../../hooks';
 import {LINE_HEIGHT, FONT_SIZE} from '../../constants';
 import type {YAxisTick} from '../../types';
+import {TruncatedText} from '../TruncatedText';
 
 interface Props {
   ticks: YAxisTick[];
@@ -22,28 +23,17 @@ function Axis({ticks, fontSize = FONT_SIZE, width, textAlign, theme}: Props) {
     <React.Fragment>
       {ticks.map(({value, formattedValue, yOffset}) => {
         return (
-          <text
+          <TruncatedText
             key={value}
             transform={`translate(${selectedTheme.grid.horizontalMargin},${
-              yOffset + LINE_HEIGHT / 3
+              yOffset - LINE_HEIGHT / 2
             })`}
             width={width + PADDING_SIZE * 2}
             height={LINE_HEIGHT}
-            fill={selectedTheme.yAxis.labelColor}
+            color={selectedTheme.yAxis.labelColor}
             fontSize={fontSize}
-            style={{
-              color: selectedTheme.yAxis.labelColor,
-              textAlign,
-              lineHeight: `${LINE_HEIGHT}px`,
-
-              background: selectedTheme.yAxis.backgroundColor,
-              padding: PADDING_SIZE,
-              whiteSpace: 'nowrap',
-              fontFeatureSettings: 'tnum',
-            }}
-          >
-            {formattedValue}
-          </text>
+            text={formattedValue}
+          />
         );
       })}
     </React.Fragment>

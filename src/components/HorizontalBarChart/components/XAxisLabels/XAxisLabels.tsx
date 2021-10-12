@@ -2,10 +2,9 @@ import React from 'react';
 import type {ScaleLinear} from 'd3-scale';
 
 import {MAX_X_AXIS_LINES, SPACE_BETWEEN_CHART_AND_AXIS} from '../../constants';
-import {FONT_SIZE, LINE_HEIGHT} from '../../../../constants';
+import {FONT_SIZE} from '../../../../constants';
 import type {LabelFormatter} from '../../types';
-
-import styles from './XAxisLabels.scss';
+import {TextAlignment, TruncatedText} from '../../../TruncatedText';
 
 interface XAxisLabelsProps {
   bandwidth: number;
@@ -19,11 +18,11 @@ interface XAxisLabelsProps {
 
 function getTextAlign({isFirst, isLast}: {isFirst: boolean; isLast: boolean}) {
   if (isFirst) {
-    return 'left';
+    return TextAlignment.Start;
   } else if (isLast) {
-    return 'right';
+    return TextAlignment.End;
   } else {
-    return 'center';
+    return TextAlignment.Middle;
   }
 }
 
@@ -50,30 +49,23 @@ export const XAxisLabels = ({
         const width = isFirstItem || isLastItem ? bandwidth / 2 : bandwidth;
 
         return (
-          <foreignObject
+          <TruncatedText
+            align={getTextAlign({
+              isFirst: isFirstItem,
+              isLast: isLastItem,
+            })}
+            color={color}
+            fontSize={FONT_SIZE}
+            height={tallestXAxisLabel}
+            key={index}
+            maxLines={MAX_X_AXIS_LINES}
+            text={label}
+            textOffset={isFirstItem ? 0 : textOffset}
             transform={`translate(${
               isFirstItem ? 0 : xScale(value) - textOffset
             },0)`}
-            height={tallestXAxisLabel}
             width={width}
-            key={index}
-          >
-            <div
-              className={styles.Text}
-              style={{
-                fontSize: `${FONT_SIZE}px`,
-                color,
-                textAlign: getTextAlign({
-                  isFirst: isFirstItem,
-                  isLast: isLastItem,
-                }),
-                maxHeight: LINE_HEIGHT * MAX_X_AXIS_LINES,
-                padding: isFirstItem || isLastItem ? 0 : '0 10px',
-              }}
-            >
-              {label}
-            </div>
-          </foreignObject>
+          />
         );
       })}
     </g>
