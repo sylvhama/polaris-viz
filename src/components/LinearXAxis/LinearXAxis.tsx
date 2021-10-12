@@ -34,6 +34,18 @@ interface Props {
   theme?: string;
 }
 
+function getAlignment({isFirst, isLast}) {
+  if (isFirst) {
+    return 'start';
+  }
+
+  if (isLast) {
+    return 'end';
+  }
+
+  return 'middle';
+}
+
 function Axis({
   xScale,
   labels,
@@ -77,13 +89,8 @@ function Axis({
           ? maxDiagonalLabelLength
           : horizontalLabelWidth;
 
-        const firstLabelAdjustment = firstLabel ? textWidth / 2 : 0;
         const adjustedLastLabel =
           Math.floor(xOffset + horizontalLabelWidth / 2) > drawableWidth;
-
-        const horizontalXPosition = adjustedLastLabel
-          ? -horizontalLabelWidth
-          : -horizontalLabelWidth / 2;
 
         return (
           <g key={index} transform={`translate(${xOffset}, 0)`}>
@@ -103,10 +110,12 @@ function Axis({
               fontSize={fontSize}
               height={textHeight}
               text={value}
-              transform={`translate(${
-                horizontalXPosition + firstLabelAdjustment
-              } 19)`}
+              transform={`translate(${0} 19)`}
               width={textWidth}
+              align={getAlignment({
+                isFirst: firstLabel,
+                isLast: adjustedLastLabel,
+              })}
             />
           </g>
         );

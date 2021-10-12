@@ -35,7 +35,6 @@ export function TruncatedText({
 }: Props) {
   const lines = truncateString(text, width, maxLines);
 
-  console.log(textOffset);
   return (
     <text
       fill={color}
@@ -45,16 +44,11 @@ export function TruncatedText({
       textLength={width}
       transform={transform}
       width={width}
+      textAnchor={align}
     >
       {lines.map((line) => {
         return (
-          <tspan
-            dx={textOffset}
-            dy={LINE_HEIGHT}
-            x="0"
-            key={line}
-            textAnchor={align}
-          >
+          <tspan dx={textOffset} dy={LINE_HEIGHT} x="0" key={line}>
             {line}
           </tspan>
         );

@@ -25,14 +25,15 @@ function Axis({ticks, fontSize = FONT_SIZE, width, textAlign, theme}: Props) {
         return (
           <TruncatedText
             key={value}
-            transform={`translate(${selectedTheme.grid.horizontalMargin},${
-              yOffset - LINE_HEIGHT / 2
-            })`}
+            transform={`translate(${
+              selectedTheme.grid.horizontalMargin + width
+            },${yOffset - LINE_HEIGHT / 1.5})`}
             width={width + PADDING_SIZE * 2}
             height={LINE_HEIGHT}
             color={selectedTheme.yAxis.labelColor}
             fontSize={fontSize}
             text={formattedValue}
+            align="end"
           />
         );
       })}
