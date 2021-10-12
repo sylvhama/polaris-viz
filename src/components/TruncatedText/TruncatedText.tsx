@@ -33,7 +33,7 @@ export function TruncatedText({
   maxLines = 3,
   width,
 }: Props) {
-  const lines = truncateString(text, width, maxLines);
+  const lines = truncateString(`${text}`, width, maxLines);
 
   return (
     <text
