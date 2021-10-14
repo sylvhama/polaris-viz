@@ -39,7 +39,6 @@ const SERIES = buildSeries([
   [1, 5, 5],
 ]);
 
-console.log(SERIES);
 const CONTAINER_HEIGHT = 500;
 
 const SINGLE_SERIES = buildSeries([3, 7, 4, 8, 4, 1, 4, 6]);
@@ -76,6 +75,9 @@ export const Default: Story<HorizontalBarChartProps> = Template.bind({});
 
 Default.args = {
   series: SERIES,
+  xAxisOptions: {
+    hide: true,
+  },
 };
 
 export const MultiSeriesAllNegative: Story<HorizontalBarChartProps> = Template.bind(
