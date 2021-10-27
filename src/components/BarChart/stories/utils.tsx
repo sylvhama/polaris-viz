@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {BarChartTooltipContent} from '../../../components';
+import {BarChartTooltipContent} from '../..';
 
 import type {Annotation} from '../types';
 

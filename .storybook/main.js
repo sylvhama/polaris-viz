@@ -6,6 +6,14 @@ const path = require('path');
 const postcssShopify = require('@shopify/postcss-plugin');
 
 module.exports = {
+  core: {
+    builder: 'webpack5',
+  },
+  features: {
+    storyStoreV7: true,
+    babelModeV7: true,
+  },
+  framework: '@storybook/react',
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
@@ -39,7 +47,7 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            query: {
+            options: {
               sourceMap: false,
               importLoaders: 1,
               modules: {

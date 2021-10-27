@@ -78,15 +78,12 @@ export const parameters = {
     theme: themes.dark,
   },
   options: {
-    storySort: (a, b) => {
-      const [story1Id, story1] = a;
-      const [story2Id, story2] = b;
-
-      const story1Path = [...story1.kind.split('/'), story1.name];
-      const story2Path = [...story2.kind.split('/'), story2.name];
-
-      return compareStoryPaths(storiesOrder, story1Path, story2Path);
-    },
+    // storySort: (a, b) => {
+    //   const story1Path = [...a.title.split('/'), a.name];
+    //   const story2Path = [...b.title.split('/'), b.name];
+    //   console.log(compareStoryPaths);
+    //   return compareStoryPaths(storiesOrder, story1Path, story2Path);
+    // },
   },
 };
 

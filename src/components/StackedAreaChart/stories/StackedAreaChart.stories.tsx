@@ -3,7 +3,7 @@ import type {Story, Meta} from '@storybook/react';
 
 import {StackedAreaChart, StackedAreaChartProps} from '../StackedAreaChart';
 
-import {data, labels, formatYAxisLabel} from './utils.stories';
+import {data, labels, formatYAxisLabel} from './utils';
 import {THEME_CONTROL_ARGS} from '../../../storybook';
 
 import {generateMultipleSeries} from '../../../../documentation/utilities';

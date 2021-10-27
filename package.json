@@ -34,7 +34,9 @@
     "prebuild-consumer": "yarn run build",
     "build-consumer": "node ./scripts/build-consumer",
     "prepublish": "in-publish && yarn run build || :",
+    "prestorybook": "node -e 'console.log(JSON.stringify(require(\"@shopify/babel-preset\")({env: () => \"development\"}, { react: true, typescript: true }), 2, \" \"))' > .babelrc.json",
     "storybook": "start-storybook -p 6006 -s public",
+    "poststorybook": "rm -f .babelrc.json",
     "build-storybook": "build-storybook -o docs-build  -s public",
     "add:story": "node ./.storybook/cli.js"
   },
@@ -92,12 +94,14 @@
     "@shopify/stylelint-plugin": "^10.2.0",
     "@shopify/typescript-configs": "^5.0.0",
     "@size-limit/preset-big-lib": "^5.0.1",
-    "@storybook/addon-actions": "^6.3.8",
-    "@storybook/addon-docs": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
-    "@storybook/addon-links": "^6.3.8",
-    "@storybook/react": "^6.3.8",
-    "@storybook/theming": "^6.3.8",
+    "@storybook/addon-actions": "^6.4.0-beta.21",
+    "@storybook/addon-docs": "^6.4.0-beta.21",
+    "@storybook/addon-essentials": "^6.4.0-beta.21",
+    "@storybook/addon-links": "^6.4.0-beta.21",
+    "@storybook/builder-webpack5": "^6.4.0-beta.21",
+    "@storybook/manager-webpack5": "^6.4.0-beta.21",
+    "@storybook/react": "^6.4.0-beta.21",
+    "@storybook/theming": "^6.4.0-beta.21",
     "@types/d3-array": "^2.12.1",
     "@types/d3-color": "1",
     "@types/d3-scale": "^2.1.1",
@@ -130,7 +134,8 @@
     "shelljs": "^0.8.3",
     "shx": "^0.3.2",
     "size-limit": "^5.0.1",
-    "typescript": "~4.3.2"
+    "typescript": "~4.3.2",
+    "webpack": "5"
   },
   "peerDependencies": {
     "@juggle/resize-observer": "^3.3.1",
@@ -161,6 +166,7 @@
     "d3-array": "2.4.0",
     "glob-parent": "^6.0.1",
     "trim": "^1.0.1",
-    "trim-newlines": "^3.0.1"
+    "trim-newlines": "^3.0.1",
+    "@storybook/react-docgen-typescript-plugin": "1.0.2-canary.253f8c1.0"
   }
 }

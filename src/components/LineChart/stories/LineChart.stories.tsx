@@ -9,7 +9,7 @@ import {
   formatXAxisLabel,
   formatYAxisLabel,
   renderTooltipContent,
-} from './utils.stories';
+} from './utils';
 import {colorTeal} from '../../../constants';
 import {THEME_CONTROL_ARGS} from '../../../storybook';
 

@@ -4,7 +4,7 @@ import type {Story, Meta} from '@storybook/react';
 import {PolarisVizProvider} from '../../../components';
 import type {PolarisVizProviderProps} from '../../../components/PolarisVizProvider';
 import {DEFAULT_THEME} from '../../../constants';
-import {defaultProps as defaultBarChartProps} from '../../BarChart/stories/utils.stories';
+import {defaultProps as defaultBarChartProps} from '../../BarChart/stories/utils';
 import {BarChart} from '../../BarChart';
 
 const barChartProps = {

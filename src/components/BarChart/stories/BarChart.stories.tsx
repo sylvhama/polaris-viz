@@ -3,7 +3,7 @@ import type {Story, Meta} from '@storybook/react';
 
 import {BarChart, BarChartProps, PolarisVizProvider} from '../../../components';
 
-import {formatXAxisLabel, defaultProps} from './utils.stories';
+import {formatXAxisLabel, defaultProps} from './utils';
 import {THEME_CONTROL_ARGS} from '../../../storybook';
 
 const tooltipContent = {
