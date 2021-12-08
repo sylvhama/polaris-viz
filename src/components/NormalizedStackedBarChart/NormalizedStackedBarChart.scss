@@ -1,7 +1,8 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/variables";
 
 .Container {
-  font-family: $font-stack-base;
+  font-family: variables.$font-stack-base;
   font-size: 14px;
   display: flex;
   box-sizing: border-box;
@@ -41,7 +42,7 @@
 .VerticalLabelContainer {
   display: flex;
   flex-flow: column wrap;
-  margin: 0 $spacing-loose;
+  margin: 0 variables.$spacing-loose;
   padding: 0;
 }
 

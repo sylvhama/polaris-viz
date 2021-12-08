@@ -1,4 +1,5 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/chart-container";
 
 .VisuallyHidden {
   // Importants are required to ensure component is available to screenreaders as expected
@@ -15,5 +16,5 @@
 }
 
 .Container {
-  @include chart-container;
+  @include chart-container.chart-container;
 }

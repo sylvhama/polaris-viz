@@ -1,9 +1,11 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/accessibility";
+@use "../../styles/shared/variables";
 
 .Bar {
-  transition: fill $duration-slow;
+  transition: fill variables.$duration-slow;
 }
 
 .StackNoOutline {
-  @include no-outline;
+  @include accessibility.no-outline;
 }

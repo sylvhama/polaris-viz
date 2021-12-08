@@ -1,5 +1,7 @@
+@use "variables";
+
 @mixin legend-label {
-  color: $color-ink-light;
+  color: variables.$color-ink-light;
   font-size: 12px;
   font-weight: 500;
   margin: 0;
@@ -14,9 +16,9 @@
 
 @mixin legend-series {
   align-items: center;
-  column-gap: $spacing-extra-tight;
+  column-gap: variables.$spacing-extra-tight;
   display: grid;
   grid-auto-flow: column;
   justify-content: end;
-  padding-left: $spacing-base-tight;
+  padding-left: variables.$spacing-base-tight;
 }

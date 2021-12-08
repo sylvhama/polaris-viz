@@ -1,21 +1,23 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/accessibility";
+@use "../../styles/shared/variables";
 
 .PositiveIcon,
 .NegativeIcon,
 .NeutralIcon {
   display: flex;
   align-items: center;
-  margin-left: $spacing-tight;
+  margin-left: variables.$spacing-tight;
 }
 
 .PositiveIcon svg {
-  margin-right: $spacing-extra-tight;
+  margin-right: variables.$spacing-extra-tight;
 }
 
 .NegativeIcon svg {
-  margin-right: $spacing-extra-tight;
+  margin-right: variables.$spacing-extra-tight;
 }
 
 .VisuallyHidden {
-  @include visually-hidden;
+  @include accessibility.visually-hidden;
 }

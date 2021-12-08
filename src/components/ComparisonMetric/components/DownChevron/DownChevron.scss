@@ -1,5 +1,6 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/accessibility";
 
 .VisuallyHidden {
-  @include visually-hidden;
+  @include accessibility.visually-hidden;
 }

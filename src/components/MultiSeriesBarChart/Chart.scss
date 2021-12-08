@@ -1,4 +1,5 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/accessibility";
 
 .ChartContainer {
   position: relative;
@@ -12,5 +13,5 @@
 }
 
 .BarGroup {
-  @include no-outline;
+  @include accessibility.no-outline;
 }

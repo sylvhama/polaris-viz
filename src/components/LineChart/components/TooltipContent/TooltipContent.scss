@@ -1,24 +1,26 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/tooltips";
+@use "../../../../styles/shared/variables";
 
 .Name {
   margin: 0;
 }
 
 .Value {
-  @include tooltip-emphasis;
+  @include tooltips.tooltip-emphasis;
   font-feature-settings: 'tnum';
   margin: 0;
-  padding-left: $spacing-extra-tight;
+  padding-left: variables.$spacing-extra-tight;
   text-align: right;
 }
 
 .Container {
-  @include tooltip-text;
+  @include tooltips.tooltip-text;
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  column-gap: $spacing-tight;
-  row-gap: $spacing-tight;
-  background: $color-white;
-  padding: $spacing-loose;
+  column-gap: variables.$spacing-tight;
+  row-gap: variables.$spacing-tight;
+  background: variables.$color-white;
+  padding: variables.$spacing-loose;
 }

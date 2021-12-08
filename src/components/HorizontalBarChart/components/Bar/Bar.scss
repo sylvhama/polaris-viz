@@ -1,8 +1,10 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/accessibility";
+@use "../../../../styles/shared/variables";
 
 .Bar {
-  @include no-outline;
-  transition: fill $duration-slow ease;
+  @include accessibility.no-outline;
+  transition: fill variables.$duration-slow ease;
 }
 
 .Group {

@@ -1,4 +1,5 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/axes";
 
 .Text {
   line-height: 1;
@@ -7,6 +8,6 @@
 }
 
 .DiagonalText {
-  @include ellipsis-overflow;
-  @include axis-text;
+  @include axes.ellipsis-overflow;
+  @include axes.axis-text;
 }

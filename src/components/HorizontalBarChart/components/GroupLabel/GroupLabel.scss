@@ -1,5 +1,6 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/axes";
 
 .Label {
-  @include ellipsis-overflow;
+  @include axes.ellipsis-overflow;
 }

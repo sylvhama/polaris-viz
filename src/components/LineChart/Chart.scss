@@ -1,7 +1,8 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/chart-container";
 
 .Container {
-  @include chart-container;
+  @include chart-container.chart-container;
   position: relative;
   user-select: none;
   max-width: 100%;

@@ -1,10 +1,12 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/tooltips";
+@use "../../../../styles/shared/variables";
 
 .Container {
-  @include tooltip-text;
+  @include tooltips.tooltip-text;
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-gap: $spacing-tight;
-  background: $color-white;
-  padding: $spacing-loose;
+  grid-gap: variables.$spacing-tight;
+  background: variables.$color-white;
+  padding: variables.$spacing-loose;
 }

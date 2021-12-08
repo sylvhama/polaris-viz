@@ -1,15 +1,16 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/variables";
 
 .SkipLink {
   position: absolute;
   top: 1px; // so the focus outline is visible
   left: 1px; // so the focus outline is visible
-  background: $color-white;
-  box-shadow: $button-drop-shadow;
-  border-radius: $border-radius-base;
-  color: $color-ink;
-  border: 1px solid $border-subdued;
-  padding: $spacing-tight $spacing-base;
+  background: variables.$color-white;
+  box-shadow: variables.$button-drop-shadow;
+  border-radius: variables.$border-radius-base;
+  color: variables.$color-ink;
+  border: 1px solid variables.$border-subdued;
+  padding: variables.$spacing-tight variables.$spacing-base;
   opacity: 0;
   pointer-events: none;
   text-decoration: none;

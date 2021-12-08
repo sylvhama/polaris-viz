@@ -1,5 +1,6 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/chart-container";
 
 .ChartContainer {
-  @include chart-container;
+  @include chart-container.chart-container;
 }

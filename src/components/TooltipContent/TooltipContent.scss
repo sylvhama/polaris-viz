@@ -1,20 +1,22 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/tooltips";
+@use "../../styles/shared/variables";
 
 .Container {
-  @include tooltip-text;
+  @include tooltips.tooltip-text;
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  column-gap: $spacing-tight;
-  row-gap: $spacing-tight;
-  background: $color-white;
-  padding: $spacing-loose;
+  column-gap: variables.$spacing-tight;
+  row-gap: variables.$spacing-tight;
+  background: variables.$color-white;
+  padding: variables.$spacing-loose;
 }
 
 .Title {
   text-align: center;
   grid-column: 1 / span 3;
-  margin-bottom: $spacing-extra-tight;
+  margin-bottom: variables.$spacing-extra-tight;
 }
 
 .Label {
@@ -22,9 +24,9 @@
 }
 
 .Value {
-  @include tooltip-emphasis;
+  @include tooltips.tooltip-emphasis;
   font-feature-settings: 'tnum';
   margin: 0;
-  padding-left: $spacing-extra-tight;
+  padding-left: variables.$spacing-extra-tight;
   text-align: right;
 }

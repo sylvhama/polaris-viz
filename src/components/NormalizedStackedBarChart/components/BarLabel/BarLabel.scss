@@ -1,4 +1,5 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/variables";
 
 .Container {
   display: flex;
@@ -6,11 +7,11 @@
 }
 
 .ContainerDefaultLabel {
-  margin-bottom: $spacing-extra-loose;
+  margin-bottom: variables.$spacing-extra-loose;
 }
 
 .ContaineBottomLabel {
-  margin-top: $spacing-loose;
+  margin-top: variables.$spacing-loose;
 }
 
 .LabelColor {
@@ -22,11 +23,11 @@
 
 .Label {
   flex: 1;
-  margin: 0 $spacing-tight;
+  margin: 0 variables.$spacing-tight;
   word-break: break-word;
 }
 
 .Value {
-  margin-top: $spacing-extra-tight;
+  margin-top: variables.$spacing-extra-tight;
   display: flex;
 }

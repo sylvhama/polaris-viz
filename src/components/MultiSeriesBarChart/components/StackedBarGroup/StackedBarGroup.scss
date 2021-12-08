@@ -1,5 +1,6 @@
-@import '../../../../styles/common';
+@use '../../../../styles/common';
+@use "../../../../styles/shared/variables";
 
 .TransitionColor {
-  transition: fill $duration-slow ease;
+  transition: fill variables.$duration-slow ease;
 }

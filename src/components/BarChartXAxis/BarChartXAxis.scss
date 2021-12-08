@@ -1,4 +1,5 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/axes";
 
 .Text {
   text-align: center;
@@ -8,6 +9,6 @@
 }
 
 .DiagonalText {
-  @include ellipsis-overflow;
+  @include axes.ellipsis-overflow;
   line-height: 1;
 }

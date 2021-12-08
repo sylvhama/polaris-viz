@@ -1,13 +1,15 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/accessibility";
+@use "../../styles/shared/chart-container";
 
 .Wrapper {
   position: relative;
   overflow: visible;
-  @include chart-container;
+  @include chart-container.chart-container;
 }
 
 .VisuallyHidden {
-  @include visually-hidden;
+  @include accessibility.visually-hidden;
 }
 
 .ComparisonLine {

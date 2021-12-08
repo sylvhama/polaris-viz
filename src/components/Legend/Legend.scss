@@ -1,14 +1,15 @@
-@import '../../styles/common';
+@use '../../styles/common';
+@use "../../styles/shared/legends";
 
 .Container {
-  @include legend-container;
+  @include legends.legend-container;
   user-select: none;
 }
 
 .Series {
-  @include legend-series;
+  @include legends.legend-series;
 }
 
 .SeriesName {
-  @include legend-label;
+  @include legends.legend-label;
 }

@@ -1,7 +1,6 @@
-// stylelint-disable scss/partial-no-import
-@import './shared/tooltips';
-@import './shared/legends';
-@import './shared/axes';
-@import './shared/variables';
-@import './shared/accessibility';
-@import './shared/chart-container';
+@use 'shared/tooltips';
+@use 'shared/legends';
+@use 'shared/axes';
+@use 'shared/variables';
+@use 'shared/accessibility';
+@use 'shared/chart-container';

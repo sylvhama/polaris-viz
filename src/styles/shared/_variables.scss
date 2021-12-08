@@ -1,3 +1,6 @@
+@use "sass:meta";
+@use "sass:math";
+
 $button-drop-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 $border-radius-base: 0.4rem;
 $border-subdued: rgba(186, 191, 195, 1);
@@ -92,8 +95,8 @@ $font-stack-base: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI'
   Roboto, 'Helvetica Neue', sans-serif;
 
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+    @return math.div($number, $number * 0 + 1);
   }
 
   @return $number;
