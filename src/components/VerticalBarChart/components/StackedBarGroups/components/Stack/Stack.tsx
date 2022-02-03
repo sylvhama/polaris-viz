@@ -14,12 +14,14 @@ import {getGradientDefId} from '../../../../../../components/shared';
 import {
   getColorBlindEventAttrs,
   getOpacityForActive,
+  useWatchColorBlindEvents,
 } from '../../../../../../hooks';
 import {STACKED_BAR_GAP} from '../../../../../../constants';
 
 import styles from './Stack.scss';
 
 interface StackProps {
+  activeBarGroup: number;
   data: FormattedStackedSeries;
   gaps: {[key: number]: StackedBarGapDirections};
   groupIndex: number;
@@ -31,6 +33,7 @@ interface StackProps {
 }
 
 export function Stack({
+  activeBarGroup,
   data,
   gaps,
   groupIndex,
@@ -42,6 +45,15 @@ export function Stack({
 }: StackProps) {
   const [activeBarIndex, setActiveBarIndex] = useState(-1);
   const keys = data[0] ? Object.keys(data[0].data) : [];
+
+  useWatchColorBlindEvents({
+    type: 'singleBar',
+    onIndexChange: ({detail}) => {
+      if (activeBarGroup === -1) {
+        setActiveBarIndex(detail.index);
+      }
+    },
+  });
 
   return (
     <React.Fragment>

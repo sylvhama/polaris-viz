@@ -210,6 +210,10 @@ export default {
     direction: DIRECTION_CONTROL_ARGS,
     theme: THEME_CONTROL_ARGS,
     type: TYPE_CONTROL_ARGS,
+    showLegend: {
+      defaultValue: false,
+      description: 'Renders a `<Legends />` component underneath the chart.',
+    },
   },
 } as Meta;
 
@@ -225,6 +229,8 @@ Default.args = {
     useMinimalLabels: true,
   },
   isAnimated: true,
+  showLegend: true,
+  direction: 'horizontal',
 };
 
 export const SingleBar: Story<BarChartProps> = Template.bind({});

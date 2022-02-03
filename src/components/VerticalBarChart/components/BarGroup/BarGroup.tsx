@@ -3,12 +3,13 @@ import type {ScaleLinear} from 'd3-scale';
 
 import type {AccessibilitySeries} from '../../../VerticalBarChart/types';
 import {formatAriaLabel} from '../../utilities';
-import {getOpacityForActive} from '../../../../hooks/ColorBlindA11y';
-import {Color, DataType} from '../../../../types';
 import {
+  getOpacityForActive,
   getColorBlindEventAttrs,
   usePrefersReducedMotion,
+  useWatchColorBlindEvents,
 } from '../../../../hooks';
+import {Color, DataType} from '../../../../types';
 import {Bar} from '../Bar';
 import {LinearGradient} from '../../../LinearGradient';
 import {BAR_SPACING} from '../../constants';
@@ -56,6 +57,15 @@ export function BarGroup({
 
   const {prefersReducedMotion} = usePrefersReducedMotion();
   const [activeBarIndex, setActiveBarIndex] = useState(-1);
+
+  useWatchColorBlindEvents({
+    type: 'singleBar',
+    onIndexChange: ({detail}) => {
+      if (activeBarGroup === -1) {
+        setActiveBarIndex(detail.index);
+      }
+    },
+  });
 
   const dataLength = clamp({amount: data.length, min: 1, max: Infinity});
   const barWidth = width / dataLength;
