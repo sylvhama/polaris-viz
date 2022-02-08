@@ -12,6 +12,7 @@ describe('<BarSegment />', () => {
     roundedCorners: true,
     index: 1,
     isAnimated: false,
+    activeIndex: -1,
   };
 
   it('gives the child a horizontal small class name', () => {
