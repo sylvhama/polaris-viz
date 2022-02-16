@@ -1,7 +1,3 @@
-import React from 'react';
-import {PolarisVizProvider as OriginalPolarisVizProvider} from '@shopify/polaris-viz-core';
-import {animated} from '@react-spring/web';
-
 export {
   SparkLineChart,
   SparkBarChart,
@@ -16,6 +12,7 @@ export {
   SquareColorPreview,
   SimpleBarChart,
   LinearGradientWithStops,
+  PolarisVizProvider,
 } from './components';
 
 export type {
@@ -38,11 +35,3 @@ export {
 export {createTheme} from '@shopify/polaris-viz-core';
 
 export type {GradientStop, Color, DataSeries, DataPoint} from './types';
-
-export function PolarisVizProvider({themes, children}) {
-  return (
-    <OriginalPolarisVizProvider themes={themes} animated={animated}>
-      {children}
-    </OriginalPolarisVizProvider>
-  );
-}

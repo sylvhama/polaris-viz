@@ -1,7 +1,6 @@
 import React from 'react';
-import {PolarisVizProvider} from '@shopify/polaris-viz';
 
-import {SparkLineChart} from '../../../../';
+import {PolarisVizProvider, SparkLineChart} from '../../../../';
 import {ComponentContainer, Title} from '../';
 
 export function MobileComponents() {
