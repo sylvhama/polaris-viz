@@ -21,6 +21,8 @@ interface Props {
   lineStyle: LineStyle;
 }
 
+const HEIGHT = 2;
+
 export function LinePreview({color, lineStyle}: Props) {
   const gradientId = useRef(uniqueId('linePreviewGradient'));
 
@@ -29,8 +31,8 @@ export function LinePreview({color, lineStyle}: Props) {
     : color;
 
   return (
-    <span className={styles.Container}>
-      <svg xmlns={XMLNS} width="15px" height="5px">
+    <span className={styles.Container} style={{height: HEIGHT}}>
+      <svg xmlns={XMLNS} width="15px" height={`${HEIGHT}px`}>
         {isGradientType(color) ? (
           <defs>
             <LinearGradientWithStops

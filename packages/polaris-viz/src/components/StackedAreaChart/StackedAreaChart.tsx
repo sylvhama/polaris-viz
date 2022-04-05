@@ -2,10 +2,10 @@ import React, {useRef} from 'react';
 import {uniqueId} from '@shopify/polaris-viz-core';
 import type {DataSeries} from '@shopify/polaris-viz-core';
 
+import {TooltipContent} from '../shared';
 import {ChartContainer} from '../ChartContainer';
 import {SkipLink} from '../SkipLink';
 import type {LinearXAxisOptions, LinearYAxisOptions} from '../../types';
-import {TooltipContent} from '../TooltipContent';
 
 import {Chart} from './Chart';
 import type {RenderTooltipContentData} from './types';

@@ -9,6 +9,7 @@ import {
 } from '@shopify/polaris-viz-core';
 import type {DataPoint, Dimensions} from '@shopify/polaris-viz-core';
 
+import {useLineChartTooltipContent} from '../../hooks/useLineChartTooltipContent';
 import {LinearXAxisLabels} from '../LinearXAxisLabels';
 import {useLegend, LegendContainer} from '../LegendContainer';
 import {
@@ -139,36 +140,6 @@ export function Chart({
       yAxisLabelWidth,
     });
 
-  const getTooltipMarkup = useCallback(
-    (index: number) => {
-      const content = data.reduce<TooltipData[]>(
-        (accumulator, {data, name, color, lineStyle}) => {
-          const currentDataPoint = data[index];
-          if (currentDataPoint != null) {
-            accumulator.push({
-              point: {
-                label: `${currentDataPoint.key}`,
-                value: currentDataPoint.value ?? 0,
-              },
-              name: name ?? '',
-              color,
-              lineStyle,
-            });
-          }
-          return accumulator;
-        },
-        [],
-      );
-
-      if (data == null) {
-        return null;
-      }
-
-      return renderTooltipContent({data: content});
-    },
-    [renderTooltipContent, data],
-  );
-
   const lineGenerator = useMemo(() => {
     const generator = line<DataPoint>()
       .x((_, index) => (xScale == null ? 0 : xScale(index)))
@@ -207,6 +178,11 @@ export function Chart({
     }
     return xScale(activeIndex == null ? 0 : activeIndex) - offset;
   };
+
+  const getTooltipMarkup = useLineChartTooltipContent({
+    data,
+    renderTooltipContent,
+  });
 
   if (xScale == null || drawableWidth == null || yAxisLabelWidth == null) {
     return null;

@@ -1,9 +1,6 @@
 import type {Series, SeriesPoint} from 'd3-shape';
 import type {SVGProps} from 'react';
-import type {
-  StringLabelFormatter,
-  NumberLabelFormatter,
-} from '@shopify/polaris-viz/src/types';
+import type {LabelFormatter} from '@shopify/polaris-viz/src/types';
 
 export interface DataPoint {
   key: number | string;
@@ -16,6 +13,8 @@ export interface DataSeries {
   isComparison?: boolean;
   name?: string;
 }
+
+export type Shape = 'Line' | 'Bar';
 
 export type LineStyle = 'dashed' | 'solid' | 'dotted';
 
@@ -39,11 +38,11 @@ export interface Dimensions {
 export type Color = string | GradientStop[];
 
 export interface XAxisOptions {
-  labelFormatter?: StringLabelFormatter;
+  labelFormatter?: LabelFormatter;
   hide?: boolean;
 }
 export interface YAxisOptions {
-  labelFormatter?: NumberLabelFormatter;
+  labelFormatter?: LabelFormatter;
   integersOnly?: boolean;
 }
 
@@ -106,8 +105,8 @@ export interface LineTheme {
 
 export interface TooltipTheme {
   backgroundColor: string;
-  valueColor: string;
-  labelColor: string;
+  textColor: string;
+  titleColor: string;
 }
 export interface SeriesColors {
   comparison: string;

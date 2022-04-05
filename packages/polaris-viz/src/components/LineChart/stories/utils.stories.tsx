@@ -1,13 +1,15 @@
+import type {
+  RenderTooltipContentData,
+  TooltipData,
+} from 'components/shared/TooltipContent';
 import React from 'react';
 
 import {randomNumber} from '../../../components/Docs/utilities';
-import type {TooltipData} from '../../../components/LineChart/types';
-
-import {TooltipContent} from '../components/TooltipContent/TooltipContent';
+import {TooltipContent} from '../../shared';
 
 export const data = [
   {
-    name: 'Apr 01–Apr 14, 2020',
+    name: 'Apr 1 – Apr 14, 2020',
     data: [
       {value: 333, key: '2020-04-01T12:00:00'},
       {value: 797, key: '2020-04-02T12:00:00'},
@@ -26,7 +28,7 @@ export const data = [
     ],
   },
   {
-    name: 'Mar 01–Mar 14, 2020',
+    name: 'Previous month',
     data: [
       {value: 709, key: '2020-03-02T12:00:00'},
       {value: 238, key: '2020-03-01T12:00:00'},
@@ -232,8 +234,8 @@ export const xAxisLabels = data[0].data.map(({key}) => `${key}`);
 
 export function formatXAxisLabel(value: string) {
   return new Date(value).toLocaleDateString('en-CA', {
+    month: 'short',
     day: 'numeric',
-    month: 'numeric',
   });
 }
 
@@ -245,7 +247,11 @@ export function formatYAxisLabel(value: number) {
   }).format(value);
 }
 
-export const renderTooltipContent: any = ({data}: {data: TooltipData[]}) => {
+export const renderTooltipContent = ({
+  data,
+  activeIndex,
+  dataSeries,
+}: RenderTooltipContentData) => {
   function formatTooltipValue(value: number) {
     return new Intl.NumberFormat('en', {
       style: 'currency',
@@ -261,17 +267,21 @@ export const renderTooltipContent: any = ({data}: {data: TooltipData[]}) => {
     });
   }
 
-  const formattedData = data.map(
-    ({name, point: {label, value}, color, lineStyle}) => ({
-      name,
+  const formattedData: TooltipData[] = [
+    {
+      shape: 'Line',
+      data: [],
+    },
+  ];
+
+  data[0].data.forEach(({value, color, isComparison}, index) => {
+    formattedData[0].data.push({
+      key: formatTooltipLabel(dataSeries[index].data[activeIndex].key),
+      value: formatTooltipValue(value),
       color,
-      lineStyle,
-      point: {
-        value: formatTooltipValue(value),
-        label: formatTooltipLabel(label),
-      },
-    }),
-  );
+      isComparison,
+    });
+  });
 
   return <TooltipContent data={formattedData} />;
 };

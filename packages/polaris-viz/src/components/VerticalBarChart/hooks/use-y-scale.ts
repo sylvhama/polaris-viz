@@ -4,7 +4,7 @@ import type {DataSeries} from '@shopify/polaris-viz-core';
 
 import {shouldRoundScaleUp, getStackedMinMax} from '../../../utilities';
 import {MIN_Y_LABEL_SPACE} from '../constants';
-import type {NumberLabelFormatter, StackedSeries} from '../../../types';
+import type {LabelFormatter, StackedSeries} from '../../../types';
 
 export function useYScale({
   drawableHeight,
@@ -15,7 +15,7 @@ export function useYScale({
 }: {
   drawableHeight: number;
   data: DataSeries[];
-  formatYAxisLabel: NumberLabelFormatter;
+  formatYAxisLabel: LabelFormatter;
   stackedValues: StackedSeries[] | null;
   integersOnly: boolean;
 }) {

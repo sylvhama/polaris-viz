@@ -1,19 +1,20 @@
 import React, {useRef} from 'react';
 import {uniqueId, ChartType, DataSeries} from '@shopify/polaris-viz-core';
 import type {Direction} from '@shopify/polaris-viz-core';
+import type {
+  XAxisOptions,
+  YAxisOptions,
+} from '@shopify/polaris-viz-core/src/types';
 
-import {TooltipContent} from '../TooltipContent';
+import type {RenderTooltipContentData} from '../../components/shared/TooltipContent/types';
+import {TooltipContent} from '../shared';
 import {SkipLink} from '../SkipLink';
 import {normalizeData} from '../../utilities';
 import {HorizontalBarChart} from '../HorizontalBarChart';
 import {VerticalBarChart} from '../VerticalBarChart';
-import type {
-  RenderTooltipContentData,
-  XAxisOptions,
-  YAxisOptions,
-} from '../BarChart';
 
 import type {Annotation} from './types';
+import {formatDataForTooltip} from './utilities';
 
 export interface BarChartProps {
   data: DataSeries[];
@@ -52,32 +53,34 @@ export function BarChart({
     skipLinkText == null || skipLinkText.length === 0 || emptyState;
 
   const xAxisOptionsForChart: Required<XAxisOptions> = {
-    labelFormatter: (value: string) => value,
+    labelFormatter: (value: string) => `${value}xx`,
     hide: false,
     ...xAxisOptions,
   };
 
   const yAxisOptionsForChart: Required<YAxisOptions> = {
-    labelFormatter: (value: number) => value.toString(),
+    labelFormatter: (value: number) => `${value}yy`,
     integersOnly: false,
     ...yAxisOptions,
   };
 
-  function renderTooltip({data}: RenderTooltipContentData) {
+  function renderTooltip(tooltipData: RenderTooltipContentData) {
     if (renderTooltipContent != null) {
-      return renderTooltipContent({data});
+      return renderTooltipContent({
+        data: tooltipData.data,
+        activeIndex: tooltipData.activeIndex,
+        dataSeries: data,
+      });
     }
 
-    const tooltipData = data.map(({value, label, color, type}) => {
-      return {
-        label,
-        value: yAxisOptionsForChart.labelFormatter(value),
-        color,
-        type,
-      };
+    const {title, formattedData} = formatDataForTooltip({
+      data: tooltipData,
+      direction,
+      xAxisOptions: xAxisOptionsForChart,
+      yAxisOptions: yAxisOptionsForChart,
     });
 
-    return <TooltipContent data={tooltipData} theme={theme} />;
+    return <TooltipContent title={title} data={formattedData} theme={theme} />;
   }
   const annotationsLookupTable = normalizeData(annotations, 'dataSeriesIndex');
 
@@ -106,10 +109,11 @@ export function BarChart({
           data={data}
           isAnimated={isAnimated}
           renderTooltipContent={renderTooltip}
-          theme={theme}
           showLegend={showLegend}
+          theme={theme}
           type={type}
           xAxisOptions={xAxisOptionsForChart}
+          yAxisOptions={yAxisOptionsForChart}
         />
       )}
 

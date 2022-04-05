@@ -5,8 +5,13 @@ import type {
   ChartType,
   Dimensions,
 } from '@shopify/polaris-viz-core';
-import type {AnnotationLookupTable} from 'components/BarChart/types';
+import type {
+  XAxisOptions,
+  YAxisOptions,
+} from '@shopify/polaris-viz-core/src/types';
 
+import type {AnnotationLookupTable} from '../BarChart/types';
+import type {RenderTooltipContentData} from '../shared/TooltipContent';
 import {BarChartXAxisLabels} from '../BarChartXAxisLabels';
 import {LegendContainer, useLegend} from '../LegendContainer';
 import {GradientDefs} from '../shared';
@@ -42,11 +47,6 @@ import {
   useWatchColorVisionEvents,
   useReducedLabelIndexes,
 } from '../../hooks';
-import type {
-  RenderTooltipContentData,
-  XAxisOptions,
-  YAxisOptions,
-} from '../BarChart';
 import {AnnotationLine} from '../BarChart';
 
 import {BarGroup, StackedBarGroups} from './components';

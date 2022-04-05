@@ -7,7 +7,6 @@ export {
   StackedAreaChart,
   Legend,
   BarChart,
-  TooltipContent,
   LinePreview,
   SquareColorPreview,
   SimpleBarChart,
@@ -21,7 +20,6 @@ export type {
   LineChartTooltipContentProps,
   StackedAreaChartProps,
   BarChartProps,
-  TooltipContentProps,
   SimpleBarChartProps,
 } from './components';
 
