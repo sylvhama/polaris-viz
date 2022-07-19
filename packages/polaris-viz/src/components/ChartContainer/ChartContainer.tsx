@@ -6,7 +6,7 @@ import React, {
   cloneElement,
   useMemo,
 } from 'react';
-import {useDebouncedCallback} from 'use-debounce/lib';
+import {useDebouncedCallback} from 'use-debounce';
 import {
   uniqueId,
   ChartContext,
@@ -84,7 +84,7 @@ export const ChartContainer = (props: Props) => {
     setChartDimensions({width, height});
   }, [entry, previousEntry?.contentRect.width]);
 
-  const [debouncedUpdateDimensions] = useDebouncedCallback(() => {
+  const debouncedUpdateDimensions = useDebouncedCallback(() => {
     updateDimensions();
   }, 100);
 
